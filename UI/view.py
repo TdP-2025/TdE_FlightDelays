@@ -43,11 +43,14 @@ class View(ft.UserControl):
         #ROW3
         self._ddAeroportoD = ft.Dropdown(label="Aeroporto di Destinazione")
         self._txtInTratteMax = ft.TextField(label = "N Tratte max")
+        self._btnPercorso = ft.ElevatedButton(text="Trova percorso",
+                                           on_click=self._controller.handlePercorso)
         self._btnCerca = ft.ElevatedButton(text="Cerca itinerario",
                                            on_click=self._controller.handleCerca)
         row3 = ft.Row([
             ft.Container(self._ddAeroportoD, width=250),
             ft.Container(self._txtInTratteMax, width=250),
+            ft.Container(self._btnPercorso, width=250),
             ft.Container(self._btnCerca, width=250)
         ], alignment=ft.MainAxisAlignment.CENTER)
 
