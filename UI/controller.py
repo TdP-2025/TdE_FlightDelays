@@ -1,5 +1,5 @@
 import flet as ft
-
+from datetime import datetime
 
 class Controller:
     def __init__(self, view, model):
@@ -77,7 +77,20 @@ class Controller:
 
 
     def handleCerca(self, e):
-        pass
+        v0 = self._choiceDDAeroportoP
+        v1 = self._choiceDDAeroportoD
+        t = self._view._txtInTratteMax.value
+        tint = int(t)
+
+        tic = datetime.now()
+        path, scoretot = self._model.getCamminoOttimo(v0, v1, tint)
+        self._view.txt_result.controls.clear()
+        self._view.txt_result.controls.append(ft.Text(f"Il percorso ottimo fra {v0} e {v1} è:"))
+        for p in path:
+            self._view.txt_result.controls.append(ft.Text(p))
+        self._view.txt_result.controls.append(ft.Text(f"Score: {scoretot}"))
+        self._view.txt_result.controls.append(ft.Text(f"Percorso trovato in {datetime.now() - tic}"))
+        self._view.update_page()
 
     def fillDD(self, allNodes):
         for n in allNodes:
